@@ -1,8 +1,30 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
 import AudioRecorder from "@/components/AudioRecorder";
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export default function Home() {
+  const [workoutCount, setWorkoutCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchCount = async () => {
+      const { data } = await supabase.from("workouts").select("date");
+      if (data) {
+        // Count unique dates (merged workouts)
+        const uniqueDates = new Set(data.map((w: any) => w.date));
+        setWorkoutCount(uniqueDates.size);
+      }
+    };
+    fetchCount();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-background relative overflow-hidden">
       {/* Background Gradients */}
@@ -26,7 +48,7 @@ export default function Home() {
 
         <div className="mt-12 grid grid-cols-1 max-w-[200px] mx-auto text-center">
           <div className="p-4 border border-white/5 rounded-lg bg-white/5 backdrop-blur-sm">
-            <div className="text-2xl font-bold text-white mb-1">0</div>
+            <div className="text-2xl font-bold text-white mb-1">{workoutCount ?? "—"}</div>
             <div className="text-xs text-muted-foreground uppercase tracking-wider">Workouts</div>
           </div>
         </div>

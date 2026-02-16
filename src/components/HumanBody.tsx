@@ -107,11 +107,11 @@ const HumanBody: React.FC<HumanBodyProps> = ({
     };
 
     return (
-        <div className={`flex gap-12 justify-center items-start ${className}`}>
+        <div className={`flex flex-col md:flex-row gap-4 md:gap-12 justify-center items-center ${className}`}>
             {/* Anterior (Front) */}
             <div className="relative">
                 <h3 className="text-center text-sm font-mono text-muted-foreground mb-2">FRONT</h3>
-                <svg viewBox="0 0 100 220" className="h-[500px] w-auto">
+                <svg viewBox="0 0 100 220" className="h-[300px] md:h-[500px] w-auto">
                     {renderMuscles(anteriorData)}
                 </svg>
 
@@ -128,7 +128,7 @@ const HumanBody: React.FC<HumanBodyProps> = ({
             {/* Posterior (Back) */}
             <div className="relative">
                 <h3 className="text-center text-sm font-mono text-muted-foreground mb-2">BACK</h3>
-                <svg viewBox="0 0 100 220" className="h-[500px] w-auto">
+                <svg viewBox="0 0 100 220" className="h-[300px] md:h-[500px] w-auto">
                     {renderMuscles(posteriorData)}
                 </svg>
 

@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EchoLift 🏋️‍♂️🎙️
+
+**Voice-First Gym Tracker & Analytics Dashboard**
+
+EchoLift is a next-generation fitness tracking application that lets you log workouts using natural language voice commands. No more typing between sets—just speak, and EchoLift parses your exercise, weight, reps, and RPE into structured data using advanced AI.
+
+## Features
+
+- **🎙️ Voice Logging**: Uses OpenAI Whisper for transcription and Google Gemini for intelligent parsing.
+- **🔥 Muscle Heatmap**: Real-time 3D-style visualization of trained muscle groups based on recent volume.
+- **📈 Progression Tracking**: Charts for volume and estimated 1RM (One Rep Max) over time.
+- **📊 Monthly Strength Reports**: Compare your max lifts month-over-month with percentage change indicators.
+- **📱 Mobile-First Design**: Fully responsive PWA that installs on your phone home screen.
+- **🔒 Privacy First**: Client-side PIN protection (AuthGuard) ensures your data remains private.
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 (App Router), React, Tailwind CSS
+- **Database**: Supabase (PostgreSQL)
+- **AI**: OpenAI Whisper API, Google Gemini Pro API
+- **Deployment**: Vercel
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You need API keys for:
+1. **Supabase** (URL & Anon Key)
+2. **OpenAI** (API Key)
+3. **Google AI Studio** (Gemini API Key)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/jainam-m02/echo-lift.git
+   cd echo-lift
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+   OPENAI_API_KEY=your_openai_key
+   GOOGLE_API_KEY=your_google_key
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is optimized for deployment on **Vercel**.
 
-## Deploy on Vercel
+1. Push your code to GitHub.
+2. Import the project in Vercel.
+3. Add the environment variables from your `.env.local`.
+4. Deploy!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Privacy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app includes a client-side PIN lock mechanism (`AuthGuard`).
+- **Default PIN**: `1111`
+- To change it, edit `src/components/AuthGuard.tsx`.
+
+## License
+
+Personal Project - All Rights Reserved.

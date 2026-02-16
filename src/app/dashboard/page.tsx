@@ -222,8 +222,8 @@ export default function Dashboard() {
     }, [workouts]);
 
     return (
-        <main className="min-h-screen p-8 bg-background text-foreground">
-            <div className="max-w-6xl mx-auto space-y-8">
+        <main className="min-h-screen p-4 md:p-8 bg-background text-foreground">
+            <div className="max-w-6xl mx-auto space-y-4 md:space-y-8">
 
                 {/* Header */}
                 <div className="flex items-center justifying-between">
@@ -251,9 +251,10 @@ export default function Dashboard() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                     {/* Main Chart */}
-                    <div className="lg:col-span-3 space-y-8">
+                    <div className="lg:col-span-3 space-y-4 md:space-y-8">
                         {/* Heatmap Section */}
-                        <div className="p-6 rounded-xl border border-border bg-card shadow-sm">
+
+                        <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-sm">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-lg font-semibold flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-green-500" />
@@ -285,14 +286,14 @@ export default function Dashboard() {
                         </div>
 
                         {/* Per-Exercise Progression Chart */}
-                        <div className="p-6 rounded-xl border border-border bg-card shadow-sm">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-lg font-semibold flex items-center gap-2">
+                        <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-sm">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+                                <h2 className="text-base md:text-lg font-semibold flex items-center gap-2">
                                     <TrendingUp className="w-4 h-4 text-blue-500" />
                                     Exercise Progression
                                 </h2>
                                 {exerciseNames.length > 0 && (
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                                         <div className="flex bg-secondary/50 rounded-lg p-0.5 border border-border">
                                             <button
                                                 onClick={() => setViewMode('volume')}
@@ -316,7 +317,7 @@ export default function Dashboard() {
                                         <select
                                             value={selectedExercise}
                                             onChange={(e) => setSelectedExercise(e.target.value)}
-                                            className="text-sm bg-secondary border border-border rounded-lg px-3 py-1.5 text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                            className="text-sm bg-secondary border border-border rounded-lg px-2 sm:px-3 py-1.5 text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px] sm:max-w-none"
                                         >
                                             {exerciseNames.map(name => (
                                                 <option key={name} value={name} className="text-black">{name}</option>
@@ -368,9 +369,9 @@ export default function Dashboard() {
                         </div>
 
                         {/* Monthly Strength Report */}
-                        <div className="p-6 rounded-xl border border-border bg-card shadow-sm">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-lg font-semibold flex items-center gap-2">
+                        <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-sm">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 mb-4">
+                                <h2 className="text-base md:text-lg font-semibold flex items-center gap-2">
                                     <Dumbbell className="w-4 h-4 text-purple-400" />
                                     Monthly Strength Report
                                 </h2>
@@ -386,13 +387,13 @@ export default function Dashboard() {
                                     {strengthReport.map(entry => (
                                         <div
                                             key={entry.name}
-                                            className="flex items-center justify-between p-3 rounded-lg bg-secondary/40 border border-border/50 hover:bg-secondary/60 transition-colors"
+                                            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 rounded-lg bg-secondary/40 border border-border/50 hover:bg-secondary/60 transition-colors"
                                         >
-                                            <div className="flex flex-col">
-                                                <span className="text-sm font-medium text-gray-200">{entry.name}</span>
-                                                <span className="text-xs text-muted-foreground font-mono">{entry.detail}</span>
+                                            <div className="flex flex-col min-w-0">
+                                                <span className="text-sm font-medium text-gray-200 truncate">{entry.name}</span>
+                                                <span className="text-xs text-muted-foreground font-mono truncate">{entry.detail}</span>
                                             </div>
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                                                 {/* Weight comparison */}
                                                 <div className="text-right">
                                                     {entry.previous !== null && entry.current !== null ? (
@@ -437,10 +438,10 @@ export default function Dashboard() {
                     </div>
 
                     {/* Right Column: Calendar + Transmissions */}
-                    <div className="lg:col-span-2 space-y-8">
+                    <div className="lg:col-span-2 space-y-4 md:space-y-8">
 
                         {/* Monthly Gym Calendar */}
-                        <div className="p-6 rounded-xl border border-border bg-card shadow-sm">
+                        <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-sm">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-lg font-semibold flex items-center gap-2">
                                     <Calendar className="w-4 h-4 text-primary" />
@@ -549,7 +550,7 @@ export default function Dashboard() {
                         </div>
 
                         {/* Recent Transmissions List */}
-                        <div className="p-6 rounded-xl border border-border bg-card shadow-sm h-fit min-w-[340px]">
+                        <div className="p-4 md:p-6 rounded-xl border border-border bg-card shadow-sm h-fit">
                             <h2 className="text-lg font-semibold mb-4">Recent Transmissions</h2>
                             <div className="space-y-4">
                                 {loading ? (

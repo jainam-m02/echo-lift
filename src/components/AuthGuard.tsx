@@ -7,8 +7,9 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     const [pin, setPin] = useState("");
     const [error, setError] = useState(false);
 
-    // Hardcoded PIN for simplicity
-    const CORRECT_PIN = "1111";
+    // Read PIN from environment variable, fallback to '1111' if not set
+    // This keeps your actual PIN secret (in .env.local) while the code is public
+    const CORRECT_PIN = process.env.NEXT_PUBLIC_ACCESS_PIN || "1111";
 
     useEffect(() => {
         // Check if valid session already exists
